@@ -34,13 +34,12 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         }
         // Observe the internal MutableLiveData
         super.observe(
-            owner,
-            { t: T ->
-                if (mPending.compareAndSet(true, false)) {
-                    observer.onChanged(t)
-                }
+            owner
+        ) { t: T ->
+            if (mPending.compareAndSet(true, false)) {
+                observer.onChanged(t)
             }
-        )
+        }
     }
 
     @MainThread override fun setValue(t: T?) {
