@@ -6,6 +6,12 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
+/**
+ * Created by Emad Mohamed Oun
+ * Movies App
+ * emad.3oon@gmail.com
+ */
+
 @HiltAndroidApp
 class MoviesApp : Application() {
 

@@ -47,7 +47,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>(FragmentMoviesBinding
         binding.rvMovies.adapter = moviesAdapter
         moviesAdapter.itemCallback = {
             val bundle = Bundle()
-            bundle.putString(MOVIE_ID, it.id)
+            bundle.putInt(MOVIE_ID, it.id)
             findNavController().navigate(R.id.moviesDetailsFragment, bundle)
         }
     }

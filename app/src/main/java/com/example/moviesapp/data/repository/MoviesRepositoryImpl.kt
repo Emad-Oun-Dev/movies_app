@@ -1,6 +1,7 @@
 package com.example.moviesapp.data.repository
 
 import com.example.moviesapp.data.apis.MoviesApis
+import com.example.moviesapp.data.database.MoviesDao
 import com.example.moviesapp.domain.models.MovieResponseUiModel
 import com.example.moviesapp.domain.models.mapToMovieResponseUiModel
 import com.example.moviesapp.domain.repository.MoviesRepository
@@ -15,28 +16,30 @@ import javax.inject.Inject
  */
 
 class MoviesRepositoryImpl @Inject constructor(
-    private val moviesApis: MoviesApis
+    private val moviesApis: MoviesApis, private val moviesDao: MoviesDao
 ) : MoviesRepository {
-
     override suspend fun getMovies(pageNumber: Int): Flow<List<MovieResponseUiModel>> {
         return flow {
-            val response = moviesApis.getMoviesApp(pageNumber = pageNumber)
-            if (response.isSuccessful) {
-                response.body()?.results?.map { it.mapToMovieResponseUiModel() }?.let { emit(it) }
-            } else {
-                error(response)
+            val cachedMovies = moviesDao.getMovies().map { it.mapToMovieResponseUiModel() }
+            emit(cachedMovies)
+            if (cachedMovies.isEmpty()) {
+                val remoteMovies = moviesApis.getMovies(pageNumber = pageNumber).body()?.results
+                if (cachedMovies.isEmpty()) {
+                    moviesDao.insertMovies(remoteMovies)
+                }
+                emit(remoteMovies?.map { it.mapToMovieResponseUiModel() } ?: emptyList())
             }
         }
     }
 
-    override suspend fun getMovieDetails(movieId: String): Flow<MovieResponseUiModel> {
-        return flow {
-            val response = moviesApis.getMovieDetails(movieId = movieId)
-            if (response.isSuccessful) {
-                response.body()?.mapToMovieResponseUiModel()?.let { emit(it) }
-            } else {
-                error(response)
+        override suspend fun getMovieDetails(movieId: Int): Flow<MovieResponseUiModel> {
+            return flow {
+                val response = moviesApis.getMovieDetails(movieId = movieId)
+                if (response.isSuccessful) {
+                    response.body()?.mapToMovieResponseUiModel()?.let { emit(it) }
+                } else {
+                    error(response)
+                }
             }
         }
     }
-}

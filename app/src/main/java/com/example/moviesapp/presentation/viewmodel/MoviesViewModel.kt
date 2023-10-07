@@ -62,7 +62,7 @@ class MoviesViewModel @Inject constructor(
         moviesListObserver.value = tempList
     }
 
-    fun callMovieDetailsApi(movieId: String) {
+    fun callMovieDetailsApi(movieId: Int) {
         viewModelScope.launch {
             movieObserver.value = Resource(ResourceState.LOADING)
             getMovieDetailsUseCase.invoke(movieId = movieId).catch {

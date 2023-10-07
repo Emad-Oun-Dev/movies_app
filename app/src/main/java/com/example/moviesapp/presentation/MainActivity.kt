@@ -9,6 +9,12 @@ import com.example.moviesapp.R
 import com.example.moviesapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Created by Emad Mohamed Oun
+ * Movies App
+ * emad.3oon@gmail.com
+ */
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

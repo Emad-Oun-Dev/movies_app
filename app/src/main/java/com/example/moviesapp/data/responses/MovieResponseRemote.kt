@@ -1,5 +1,7 @@
 package com.example.moviesapp.data.responses
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,9 +14,11 @@ class MovieListResponseRemote(
   @SerializedName("results")
   var results: List<MovieResponseRemote>?
 ) {
-  class MovieResponseRemote(
+  @Entity(tableName = "movies_table")
+  data class MovieResponseRemote(
+    @PrimaryKey
     @SerializedName("id")
-    val id: String?,
+    val id: Int,
     @SerializedName("overview")
     val overview: String?,
     @SerializedName("popularity")

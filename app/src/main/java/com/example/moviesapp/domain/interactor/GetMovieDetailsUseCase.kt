@@ -14,6 +14,6 @@ import javax.inject.Inject
 class GetMovieDetailsUseCase @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) {
-    suspend fun invoke(movieId: String): Flow<MovieResponseUiModel> =
+    suspend fun invoke(movieId: Int): Flow<MovieResponseUiModel> =
         moviesRepository.getMovieDetails(movieId = movieId)
 }

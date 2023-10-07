@@ -24,5 +24,4 @@ class APIModule {
     @Provides
     fun provideMoviesApi(@Named(MOVIES) retrofit: Retrofit): MoviesApis =
         retrofit.create(MoviesApis::class.java)
-
 }

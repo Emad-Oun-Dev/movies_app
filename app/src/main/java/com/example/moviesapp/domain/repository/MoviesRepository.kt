@@ -11,5 +11,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
   suspend fun getMovies(pageNumber: Int): Flow<List<MovieResponseUiModel>>
-  suspend fun getMovieDetails(movieId: String): Flow<MovieResponseUiModel>
+  suspend fun getMovieDetails(movieId: Int): Flow<MovieResponseUiModel>
 }

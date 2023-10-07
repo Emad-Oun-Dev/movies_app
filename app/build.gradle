@@ -18,6 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "BASE_URL_MOVIES", "\"https://api.themoviedb.org/\"")
+        buildConfigField("String", "API_KEY", "\"c9856d0cb57c3f14bf75bdc6c063b8f3\"")
         buildConfigField("String", "BASE_URL_MOVIE_DETAILS", "\"https://developers.themoviedb.org/\"")
         buildConfigField("String", "FILM_POSTER_BASE_URL", "\"https://image.tmdb.org/t/p/w500/\"")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -51,6 +52,10 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "org.mockito:mockito-core:$mockito_core_version"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_android_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockweb_server_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
@@ -82,4 +87,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     // glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
+    // Room
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+
 }

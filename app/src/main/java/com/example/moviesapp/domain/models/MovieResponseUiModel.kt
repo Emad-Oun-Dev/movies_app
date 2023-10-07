@@ -10,7 +10,7 @@ import com.example.moviesapp.data.responses.MovieListResponseRemote
  */
 
 data class MovieResponseUiModel(
-    val id: String?,
+    val id: Int,
     val overview: String?,
     val popularity: String?,
     val posterPath: String?,

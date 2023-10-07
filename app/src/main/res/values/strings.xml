@@ -3,4 +3,5 @@
     <string name="movies_fragment_label">Movies Fragment</string>
     <string name="movie_details_fragment_label">Movie Details Fragment</string>
     <string name="img_desc">image description</string>
+    <string name="database">Movies.db</string>
 </resources>
