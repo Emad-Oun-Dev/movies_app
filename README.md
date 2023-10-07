@@ -6,6 +6,7 @@ A sample android app that shows how to use coroutines, hilt-dagger and mvvm in K
 * Kotlin
 * MVVM
 * Clean Architecture
+* Room DB
 
 # Libraries
 * Coroutines
@@ -14,3 +15,4 @@ A sample android app that shows how to use coroutines, hilt-dagger and mvvm in K
 * gson
 * okhttp
 * Timber
+* MockWebServer
